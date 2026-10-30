@@ -1,0 +1,560 @@
+{
+  "id": "portfolio-demo-2026",
+  "researchedAt": "2026-10-30T00:00:00Z",
+  "scope": "Empresas fictícias para portfólio",
+  "items": [
+    {
+      "lead": {
+        "id": "portfolio-example-1",
+        "name": "Lavanderia Aurora — exemplo",
+        "city": "Curitiba / PR",
+        "neighborhood": "Região fictícia",
+        "sector": "Lavanderia",
+        "address": "Endereço de demonstração, sem atendimento real",
+        "businessPhone": "",
+        "phone": "",
+        "website": "",
+        "websiteStatus": "unknown",
+        "services": "Serviço de demonstração de lavanderia",
+        "description": "Empresa inventada exclusivamente para demonstrar o software. Não representa estabelecimento real.",
+        "stage": "novo",
+        "value": 0,
+        "received": 0,
+        "contactAllowed": false,
+        "publicEnabled": false,
+        "publishReady": false,
+        "publicPrices": false,
+        "productionStatus": "briefing",
+        "research": {
+          "origin": "manual",
+          "batchId": "portfolio-demo-2026",
+          "checkedAt": "2026-10-30T00:00:00Z",
+          "websiteAssessment": "not_found",
+          "confidence": "low",
+          "priority": "normal",
+          "summary": "Dados sintéticos para executar testes e estudar o código.",
+          "opportunity": "Exemplo fictício; não é uma oportunidade comercial confirmada.",
+          "missing": [
+            "Substituir por informações autorizadas antes de uma entrega real"
+          ],
+          "queries": [],
+          "sources": [
+            {
+              "url": "https://example.com/portfolio/1",
+              "title": "Fonte fictícia de teste",
+              "kind": "directory",
+              "fields": [
+                "name",
+                "sector"
+              ]
+            }
+          ]
+        }
+      },
+      "draft": {
+        "kind": "laundry",
+        "headline": "Conheça Lavanderia Aurora — exemplo",
+        "subtitle": "Proposta fictícia para estudo e revisão.",
+        "about": "Empresa inventada exclusivamente para demonstrar o software. Não representa estabelecimento real.",
+        "goal": "Apresentar uma empresa fictícia",
+        "audience": "Visitantes da demonstração",
+        "layout": "editorial",
+        "palette": "#64B29A",
+        "cta": "Conhecer o exemplo",
+        "brandStyle": "editorial",
+        "products": [
+          {
+            "id": "demo-service-0",
+            "title": "Serviço de exemplo",
+            "description": "Descrição demonstrativa, sujeita a revisão.",
+            "kind": "service",
+            "priceMode": "quote"
+          }
+        ]
+      }
+    },
+    {
+      "lead": {
+        "id": "portfolio-example-2",
+        "name": "Ponto Pet — exemplo",
+        "city": "Curitiba / PR",
+        "neighborhood": "Região fictícia",
+        "sector": "Pet shop",
+        "address": "Endereço de demonstração, sem atendimento real",
+        "businessPhone": "",
+        "phone": "",
+        "website": "",
+        "websiteStatus": "unknown",
+        "services": "Serviço de demonstração de pet shop",
+        "description": "Empresa inventada exclusivamente para demonstrar o software. Não representa estabelecimento real.",
+        "stage": "novo",
+        "value": 0,
+        "received": 0,
+        "contactAllowed": false,
+        "publicEnabled": false,
+        "publishReady": false,
+        "publicPrices": false,
+        "productionStatus": "briefing",
+        "research": {
+          "origin": "manual",
+          "batchId": "portfolio-demo-2026",
+          "checkedAt": "2026-10-30T00:00:00Z",
+          "websiteAssessment": "not_found",
+          "confidence": "low",
+          "priority": "normal",
+          "summary": "Dados sintéticos para executar testes e estudar o código.",
+          "opportunity": "Exemplo fictício; não é uma oportunidade comercial confirmada.",
+          "missing": [
+            "Substituir por informações autorizadas antes de uma entrega real"
+          ],
+          "queries": [],
+          "sources": [
+            {
+              "url": "https://example.com/portfolio/2",
+              "title": "Fonte fictícia de teste",
+              "kind": "directory",
+              "fields": [
+                "name",
+                "sector"
+              ]
+            }
+          ]
+        }
+      },
+      "draft": {
+        "kind": "pet",
+        "headline": "Conheça Ponto Pet — exemplo",
+        "subtitle": "Proposta fictícia para estudo e revisão.",
+        "about": "Empresa inventada exclusivamente para demonstrar o software. Não representa estabelecimento real.",
+        "goal": "Apresentar uma empresa fictícia",
+        "audience": "Visitantes da demonstração",
+        "layout": "editorial",
+        "palette": "#F2B84B",
+        "cta": "Conhecer o exemplo",
+        "brandStyle": "editorial",
+        "products": [
+          {
+            "id": "demo-service-1",
+            "title": "Serviço de exemplo",
+            "description": "Descrição demonstrativa, sujeita a revisão.",
+            "kind": "service",
+            "priceMode": "quote"
+          }
+        ]
+      }
+    },
+    {
+      "lead": {
+        "id": "portfolio-example-3",
+        "name": "Ateliê Linha Clara — exemplo",
+        "city": "Curitiba / PR",
+        "neighborhood": "Região fictícia",
+        "sector": "Costura",
+        "address": "Endereço de demonstração, sem atendimento real",
+        "businessPhone": "",
+        "phone": "",
+        "website": "",
+        "websiteStatus": "unknown",
+        "services": "Serviço de demonstração de costura",
+        "description": "Empresa inventada exclusivamente para demonstrar o software. Não representa estabelecimento real.",
+        "stage": "novo",
+        "value": 0,
+        "received": 0,
+        "contactAllowed": false,
+        "publicEnabled": false,
+        "publishReady": false,
+        "publicPrices": false,
+        "productionStatus": "briefing",
+        "research": {
+          "origin": "manual",
+          "batchId": "portfolio-demo-2026",
+          "checkedAt": "2026-10-30T00:00:00Z",
+          "websiteAssessment": "not_found",
+          "confidence": "low",
+          "priority": "normal",
+          "summary": "Dados sintéticos para executar testes e estudar o código.",
+          "opportunity": "Exemplo fictício; não é uma oportunidade comercial confirmada.",
+          "missing": [
+            "Substituir por informações autorizadas antes de uma entrega real"
+          ],
+          "queries": [],
+          "sources": [
+            {
+              "url": "https://example.com/portfolio/3",
+              "title": "Fonte fictícia de teste",
+              "kind": "directory",
+              "fields": [
+                "name",
+                "sector"
+              ]
+            }
+          ]
+        }
+      },
+      "draft": {
+        "kind": "sewing",
+        "headline": "Conheça Ateliê Linha Clara — exemplo",
+        "subtitle": "Proposta fictícia para estudo e revisão.",
+        "about": "Empresa inventada exclusivamente para demonstrar o software. Não representa estabelecimento real.",
+        "goal": "Apresentar uma empresa fictícia",
+        "audience": "Visitantes da demonstração",
+        "layout": "editorial",
+        "palette": "#BE8394",
+        "cta": "Conhecer o exemplo",
+        "brandStyle": "editorial",
+        "products": [
+          {
+            "id": "demo-service-2",
+            "title": "Serviço de exemplo",
+            "description": "Descrição demonstrativa, sujeita a revisão.",
+            "kind": "service",
+            "priceMode": "quote"
+          }
+        ]
+      }
+    },
+    {
+      "lead": {
+        "id": "portfolio-example-4",
+        "name": "Café Horizonte — exemplo",
+        "city": "Curitiba / PR",
+        "neighborhood": "Região fictícia",
+        "sector": "Cafeteria",
+        "address": "Endereço de demonstração, sem atendimento real",
+        "businessPhone": "",
+        "phone": "",
+        "website": "",
+        "websiteStatus": "unknown",
+        "services": "Serviço de demonstração de cafeteria",
+        "description": "Empresa inventada exclusivamente para demonstrar o software. Não representa estabelecimento real.",
+        "stage": "novo",
+        "value": 0,
+        "received": 0,
+        "contactAllowed": false,
+        "publicEnabled": false,
+        "publishReady": false,
+        "publicPrices": false,
+        "productionStatus": "briefing",
+        "research": {
+          "origin": "manual",
+          "batchId": "portfolio-demo-2026",
+          "checkedAt": "2026-10-30T00:00:00Z",
+          "websiteAssessment": "not_found",
+          "confidence": "low",
+          "priority": "normal",
+          "summary": "Dados sintéticos para executar testes e estudar o código.",
+          "opportunity": "Exemplo fictício; não é uma oportunidade comercial confirmada.",
+          "missing": [
+            "Substituir por informações autorizadas antes de uma entrega real"
+          ],
+          "queries": [],
+          "sources": [
+            {
+              "url": "https://example.com/portfolio/4",
+              "title": "Fonte fictícia de teste",
+              "kind": "directory",
+              "fields": [
+                "name",
+                "sector"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "lead": {
+        "id": "portfolio-example-5",
+        "name": "Oficina Pinhal — exemplo",
+        "city": "Curitiba / PR",
+        "neighborhood": "Região fictícia",
+        "sector": "Oficina mecânica",
+        "address": "Endereço de demonstração, sem atendimento real",
+        "businessPhone": "",
+        "phone": "",
+        "website": "",
+        "websiteStatus": "unknown",
+        "services": "Serviço de demonstração de oficina mecânica",
+        "description": "Empresa inventada exclusivamente para demonstrar o software. Não representa estabelecimento real.",
+        "stage": "novo",
+        "value": 0,
+        "received": 0,
+        "contactAllowed": false,
+        "publicEnabled": false,
+        "publishReady": false,
+        "publicPrices": false,
+        "productionStatus": "briefing",
+        "research": {
+          "origin": "manual",
+          "batchId": "portfolio-demo-2026",
+          "checkedAt": "2026-10-30T00:00:00Z",
+          "websiteAssessment": "not_found",
+          "confidence": "low",
+          "priority": "normal",
+          "summary": "Dados sintéticos para executar testes e estudar o código.",
+          "opportunity": "Exemplo fictício; não é uma oportunidade comercial confirmada.",
+          "missing": [
+            "Substituir por informações autorizadas antes de uma entrega real"
+          ],
+          "queries": [],
+          "sources": [
+            {
+              "url": "https://example.com/portfolio/5",
+              "title": "Fonte fictícia de teste",
+              "kind": "directory",
+              "fields": [
+                "name",
+                "sector"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "lead": {
+        "id": "portfolio-example-6",
+        "name": "Jardim Vivo — exemplo",
+        "city": "Curitiba / PR",
+        "neighborhood": "Região fictícia",
+        "sector": "Jardinagem",
+        "address": "Endereço de demonstração, sem atendimento real",
+        "businessPhone": "",
+        "phone": "",
+        "website": "",
+        "websiteStatus": "unknown",
+        "services": "Serviço de demonstração de jardinagem",
+        "description": "Empresa inventada exclusivamente para demonstrar o software. Não representa estabelecimento real.",
+        "stage": "novo",
+        "value": 0,
+        "received": 0,
+        "contactAllowed": false,
+        "publicEnabled": false,
+        "publishReady": false,
+        "publicPrices": false,
+        "productionStatus": "briefing",
+        "research": {
+          "origin": "manual",
+          "batchId": "portfolio-demo-2026",
+          "checkedAt": "2026-10-30T00:00:00Z",
+          "websiteAssessment": "not_found",
+          "confidence": "low",
+          "priority": "normal",
+          "summary": "Dados sintéticos para executar testes e estudar o código.",
+          "opportunity": "Exemplo fictício; não é uma oportunidade comercial confirmada.",
+          "missing": [
+            "Substituir por informações autorizadas antes de uma entrega real"
+          ],
+          "queries": [],
+          "sources": [
+            {
+              "url": "https://example.com/portfolio/6",
+              "title": "Fonte fictícia de teste",
+              "kind": "directory",
+              "fields": [
+                "name",
+                "sector"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "lead": {
+        "id": "portfolio-example-7",
+        "name": "Studio Forma — exemplo",
+        "city": "Curitiba / PR",
+        "neighborhood": "Região fictícia",
+        "sector": "Salão de beleza",
+        "address": "Endereço de demonstração, sem atendimento real",
+        "businessPhone": "",
+        "phone": "",
+        "website": "",
+        "websiteStatus": "unknown",
+        "services": "Serviço de demonstração de salão de beleza",
+        "description": "Empresa inventada exclusivamente para demonstrar o software. Não representa estabelecimento real.",
+        "stage": "novo",
+        "value": 0,
+        "received": 0,
+        "contactAllowed": false,
+        "publicEnabled": false,
+        "publishReady": false,
+        "publicPrices": false,
+        "productionStatus": "briefing",
+        "research": {
+          "origin": "manual",
+          "batchId": "portfolio-demo-2026",
+          "checkedAt": "2026-10-30T00:00:00Z",
+          "websiteAssessment": "not_found",
+          "confidence": "low",
+          "priority": "normal",
+          "summary": "Dados sintéticos para executar testes e estudar o código.",
+          "opportunity": "Exemplo fictício; não é uma oportunidade comercial confirmada.",
+          "missing": [
+            "Substituir por informações autorizadas antes de uma entrega real"
+          ],
+          "queries": [],
+          "sources": [
+            {
+              "url": "https://example.com/portfolio/7",
+              "title": "Fonte fictícia de teste",
+              "kind": "directory",
+              "fields": [
+                "name",
+                "sector"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "lead": {
+        "id": "portfolio-example-8",
+        "name": "ValeTech — exemplo",
+        "city": "Curitiba / PR",
+        "neighborhood": "Região fictícia",
+        "sector": "Assistência técnica",
+        "address": "Endereço de demonstração, sem atendimento real",
+        "businessPhone": "",
+        "phone": "",
+        "website": "",
+        "websiteStatus": "unknown",
+        "services": "Serviço de demonstração de assistência técnica",
+        "description": "Empresa inventada exclusivamente para demonstrar o software. Não representa estabelecimento real.",
+        "stage": "novo",
+        "value": 0,
+        "received": 0,
+        "contactAllowed": false,
+        "publicEnabled": false,
+        "publishReady": false,
+        "publicPrices": false,
+        "productionStatus": "briefing",
+        "research": {
+          "origin": "manual",
+          "batchId": "portfolio-demo-2026",
+          "checkedAt": "2026-10-30T00:00:00Z",
+          "websiteAssessment": "not_found",
+          "confidence": "low",
+          "priority": "normal",
+          "summary": "Dados sintéticos para executar testes e estudar o código.",
+          "opportunity": "Exemplo fictício; não é uma oportunidade comercial confirmada.",
+          "missing": [
+            "Substituir por informações autorizadas antes de uma entrega real"
+          ],
+          "queries": [],
+          "sources": [
+            {
+              "url": "https://example.com/portfolio/8",
+              "title": "Fonte fictícia de teste",
+              "kind": "directory",
+              "fields": [
+                "name",
+                "sector"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "lead": {
+        "id": "portfolio-example-9",
+        "name": "Mercado do Bairro — exemplo",
+        "city": "Curitiba / PR",
+        "neighborhood": "Região fictícia",
+        "sector": "Mercado",
+        "address": "Endereço de demonstração, sem atendimento real",
+        "businessPhone": "",
+        "phone": "",
+        "website": "",
+        "websiteStatus": "unknown",
+        "services": "Serviço de demonstração de mercado",
+        "description": "Empresa inventada exclusivamente para demonstrar o software. Não representa estabelecimento real.",
+        "stage": "novo",
+        "value": 0,
+        "received": 0,
+        "contactAllowed": false,
+        "publicEnabled": false,
+        "publishReady": false,
+        "publicPrices": false,
+        "productionStatus": "briefing",
+        "research": {
+          "origin": "manual",
+          "batchId": "portfolio-demo-2026",
+          "checkedAt": "2026-10-30T00:00:00Z",
+          "websiteAssessment": "not_found",
+          "confidence": "low",
+          "priority": "normal",
+          "summary": "Dados sintéticos para executar testes e estudar o código.",
+          "opportunity": "Exemplo fictício; não é uma oportunidade comercial confirmada.",
+          "missing": [
+            "Substituir por informações autorizadas antes de uma entrega real"
+          ],
+          "queries": [],
+          "sources": [
+            {
+              "url": "https://example.com/portfolio/9",
+              "title": "Fonte fictícia de teste",
+              "kind": "directory",
+              "fields": [
+                "name",
+                "sector"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "lead": {
+        "id": "portfolio-example-10",
+        "name": "Padaria Girassol — exemplo",
+        "city": "Curitiba / PR",
+        "neighborhood": "Região fictícia",
+        "sector": "Padaria",
+        "address": "Endereço de demonstração, sem atendimento real",
+        "businessPhone": "",
+        "phone": "",
+        "website": "",
+        "websiteStatus": "unknown",
+        "services": "Serviço de demonstração de padaria",
+        "description": "Empresa inventada exclusivamente para demonstrar o software. Não representa estabelecimento real.",
+        "stage": "novo",
+        "value": 0,
+        "received": 0,
+        "contactAllowed": false,
+        "publicEnabled": false,
+        "publishReady": false,
+        "publicPrices": false,
+        "productionStatus": "briefing",
+        "research": {
+          "origin": "manual",
+          "batchId": "portfolio-demo-2026",
+          "checkedAt": "2026-10-30T00:00:00Z",
+          "websiteAssessment": "not_found",
+          "confidence": "low",
+          "priority": "normal",
+          "summary": "Dados sintéticos para executar testes e estudar o código.",
+          "opportunity": "Exemplo fictício; não é uma oportunidade comercial confirmada.",
+          "missing": [
+            "Substituir por informações autorizadas antes de uma entrega real"
+          ],
+          "queries": [],
+          "sources": [
+            {
+              "url": "https://example.com/portfolio/10",
+              "title": "Fonte fictícia de teste",
+              "kind": "directory",
+              "fields": [
+                "name",
+                "sector"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

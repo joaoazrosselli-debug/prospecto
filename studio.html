@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Organize empresas, prepare sites e acompanhe suas propostas em um único lugar.">
+  <meta name="theme-color" content="#0b1120"><title>Prospecto — seu estúdio de sites</title>
+  <link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/studio-v2.css"><script type="module" src="/app.js"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#empresas" aria-label="Prospecto, início"><span class="brand-mark">p<span>↗</span></span><span>prospecto<span class="brand-caption">SEU ESTÚDIO DE SITES</span></span></a>
+    <div class="workspace"><span class="avatar">J</span><span><strong id="studio-name">Meu estúdio</strong><small>Seu espaço de trabalho</small></span><span class="workspace-dot"></span></div>
+    <span class="nav-label">ESPAÇO DE TRABALHO</span>
+    <nav aria-label="Navegação principal">
+      <a class="nav-item active" href="#empresas" data-nav="empresas"><span data-icon="building"></span>Empresas<span id="nav-count" class="nav-count">6</span></a>
+      <a class="nav-item" href="#producao" data-nav="producao"><span data-icon="sparkles"></span>Produção de sites</a>
+      <a class="nav-item" href="#assistente" data-nav="assistente"><span data-icon="search"></span>Buscar empresas</a>
+      <a class="nav-item" href="#prospeccao" data-nav="prospeccao"><span data-icon="message"></span>Prospecção</a>
+      <a class="nav-item" href="#negocios" data-nav="negocios"><span data-icon="columns"></span>Negócios</a>
+      <a class="nav-item" href="#resultados" data-nav="resultados"><span data-icon="chart"></span>Resultados</a>
+      <a class="nav-item" href="#equipe" data-nav="equipe"><span data-icon="globe"></span>Equipe e hospedagem</a>
+      <a class="nav-item" href="#configuracoes" data-nav="configuracoes"><span data-icon="settings"></span>Configurações</a>
+    </nav>
+    <div class="sidebar-bottom"><div class="source-note"><span class="source-led"></span><strong>Base sob seu controle</strong><p>Clientes, materiais e valores no mesmo espaço da equipe.</p></div><div class="save-note"><span data-icon="save"></span><span id="sync-status">Conectando à base…</span></div></div>
+  </aside>
+  <main>
+    <header class="topbar"><span id="breadcrumb">Seu estúdio <span>/</span> Empresas</span><div class="topbar-right"><button class="text-button" data-action="share">Compartilhar ↗</button><span class="private-badge"><span data-icon="lock"></span>Espaço privado</span><span class="avatar small">J</span></div></header>
+    <div class="content">
+      <div class="demo-banner" id="demo-banner"><span data-icon="info"></span><span><strong>Modo demonstração.</strong> Estas empresas e seus dados são fictícios.</span><button class="text-button" data-action="real-scope">Usar minha base <span>↗</span></button></div>
+      <div class="page-heading"><div><div class="eyebrow" id="eyebrow">DA OPORTUNIDADE À ENTREGA</div><h1 id="page-title">Encontre seu próximo cliente<span>.</span></h1><p id="page-description">Uma base organizada. Uma boa abordagem. Um site pronto para apresentar.</p></div><div class="heading-actions" id="heading-actions"></div></div>
+      <div class="scope-switch" role="group" aria-label="Selecionar base"><button id="real-scope" data-action="real-scope">Base da equipe <span id="real-count">0</span></button><button id="demo-scope" class="selected" data-action="demo-scope">Demonstração <span>6</span></button></div>
+      <section id="view" aria-live="polite"></section>
+      <footer class="app-footer"><span>Prospecto <span>·</span> Um passo de cada vez, com controle.</span><button class="text-button" data-action="backup">Fazer backup da base <span>↗</span></button></footer>
+    </div>
+  </main>
+  <dialog id="modal" aria-labelledby="modal-title"><div id="modal-content"></div></dialog>
+  <div class="toast" id="toast" role="status"></div>
+  <input type="file" id="html-file" accept=".html,text/html" hidden>
+  <input type="file" id="import-file" accept=".csv,.json,text/csv,application/json" hidden>
+</body></html>

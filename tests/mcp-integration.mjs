@@ -1,0 +1,75 @@
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+import {readFile,readdir,writeFile} from 'node:fs/promises';
+import path from 'node:path';
+const require=createRequire(import.meta.url),wranglerRequire=createRequire(require.resolve('wrangler/package.json')),{Miniflare}=wranglerRequire('miniflare');
+const root=path.resolve('dist/server'),names=['index.js',...(await readdir(root,{recursive:true})).filter(f=>f.endsWith('.js')&&f!=='index.js')];
+const mf=new Miniflare({modules:names.map(f=>({type:'ESModule',path:path.join(root,f)})),modulesRoot:root,compatibilityDate:'2026-05-15',compatibilityFlags:['nodejs_compat'],d1Databases:['DB'],r2Buckets:['BUCKET'],bindings:{PROSPECTO_OWNER_EMAIL:'qa.owner@prospecto.test',PROSPECTO_PILOT_BATCH:'portfolio-demo-2026'},cf:false});
+const identity={owner:{'oai-authenticated-user-id':'qa-owner','oai-authenticated-user-email':'qa.owner@prospecto.test'},member:{'oai-authenticated-user-id':'qa-member','oai-authenticated-user-email':'qa.member@prospecto.test'},stranger:{'oai-authenticated-user-id':'qa-stranger','oai-authenticated-user-email':'qa.stranger@prospecto.test'}};
+async function request(route,{as='owner',method='GET',body,headers={}}={}){return mf.dispatchFetch('https://qa.prospecto.test'+route,{method,headers:{...(identity[as]||{}),'Content-Type':'application/json','X-Prospecto-Request':'1',...headers},body:body===undefined?undefined:JSON.stringify(body)});}
+async function rpc(method,params={},as='owner'){const response=await request('/mcp',{as,method:'POST',body:{jsonrpc:'2.0',id:1,method,params}});return {status:response.status,data:await response.json()};}
+async function call(name,args={},as='owner'){const r=await rpc('tools/call',{name,arguments:args},as);assert.equal(r.status,200,JSON.stringify(r.data));return r.data.result;}
+async function ok(name,args={}){const r=await call(name,args);assert.equal(r.isError,false,r.content?.[0]?.text);return r.structuredContent;}
+const research={websiteAssessment:'not_found',confidence:'medium',priority:'high',summary:'Dados públicos para teste.',opportunity:'Hipótese de página para revisão.',missing:['Confirmar WhatsApp'],queries:['empresa exemplo Curitiba'],sources:[{url:'https://example.com/negocio',title:'Fonte de teste',kind:'directory',fields:['name','address','businessPhone']}]};
+try{
+ const db=await mf.getD1Database('DB');for(const file of (await readdir('drizzle')).filter(f=>f.endsWith('.sql')).sort())for(const sql of (await readFile('drizzle/'+file,'utf8')).split('--> statement-breakpoint').map(s=>s.trim()).filter(Boolean))await db.prepare(sql).run();
+ let r=await rpc('server/discover',{},'anonymous');assert.equal(r.status,200);assert.deepEqual(r.data.result.supportedVersions,['2026-07-28']);
+ r=await rpc('tools/list',{},'anonymous');assert.equal(r.status,200);assert.equal(r.data.result.tools.length,14);assert.ok(r.data.result.tools.every(t=>t.inputSchema.additionalProperties===false));
+ assert.equal((await rpc('tools/call',{name:'prospecto_workspace',arguments:{}},'anonymous')).status,401);
+ assert.equal((await rpc('tools/call',{name:'prospecto_workspace',arguments:{}},'stranger')).status,403);
+ const badOrigin=await request('/mcp',{method:'POST',headers:{Origin:'https://outside.example'},body:{jsonrpc:'2.0',id:1,method:'tools/list'}});assert.equal(badOrigin.status,403);
+ console.log('PASS: descoberta MCP, schemas e autenticação sem expor dados a visitantes.');
+ const boot=await (await request('/api/bootstrap')).json();assert.equal(boot.leads.length,10);assert.equal(boot.leads.filter(l=>l.customHtml).length,3);assert.equal(boot.agent.pilot.status,'applied');
+ assert.ok(boot.leads.every(l=>l.stage==='novo'&&!l.publicEnabled&&!l.publishReady&&l.value===0&&l.received===0&&l.research.sources.length));
+ assert.ok(boot.leads.filter(l=>l.customHtml).every(l=>l.customHtml.includes('<svg')&&l.productionStatus==='review'&&!l.publicPrices));
+ assert.ok(boot.leads.filter(l=>l.research.websiteAssessment==='not_found').every(l=>l.websiteStatus==='unknown'));
+ assert.equal((await (await request('/api/bootstrap')).json()).leads.length,10);
+ assert.equal((await db.prepare("SELECT COUNT(*) AS n FROM studio_records WHERE kind='pilot'").first()).n,1);
+ console.log('PASS: piloto atômico e idempotente com 10 pesquisas, 3 propostas privadas e fontes; nenhum preço inventado.');
+ const input={name:'Empresa de teste',city:'Curitiba / PR',sector:'Comércio local',neighborhood:'Bairro Alto',address:'Rua de teste, 10',businessPhone:'(41) 3000-0000',research};
+ const results=await Promise.all([ok('prospecto_upsert_researched_lead',input),ok('prospecto_upsert_researched_lead',input)]);assert.equal(results[0].lead.id,results[1].lead.id);const id=results[0].lead.id;
+ assert.equal((await ok('prospecto_list_leads',{query:'Empresa de teste'})).total,1);
+ let raw=JSON.parse((await db.prepare('SELECT data FROM studio_records WHERE key=?').bind('lead:'+id).first()).data);assert.equal(raw.phone,'');assert.equal(raw.businessPhone,input.businessPhone);
+ const malformed=await call('prospecto_upsert_researched_lead',{...input,stage:'fechado',value:1000});assert.equal(malformed.isError,true);
+ const noProof=await call('prospecto_upsert_researched_lead',{...input,whatsapp:'41999990000'});assert.equal(noProof.isError,true);
+ const foundWithoutURL=await call('prospecto_upsert_researched_lead',{...input,research:{...research,websiteAssessment:'found'}});assert.equal(foundWithoutURL.isError,true);
+ console.log('PASS: deduplicação inclusive em paralelo, distinção de telefone/WhatsApp e rejeição de alterações financeiras.');
+ let info=(await ok('prospecto_get_lead',{lead_id:id})).lead;
+ assert.ok(!Object.hasOwn(info,'value')&&!Object.hasOwn(info,'received'));
+ const draft={lead_id:id,expected_revision:info.revision,headline:'Página de teste',subtitle:'Conteúdo fornecido apenas para testar.',layout:'editorial',palette:'#38bdf8',products:[{title:'Serviço publicado',kind:'service'}],html:'<!doctype html><html><head><style>body{font:16px Arial}</style></head><body><h1>Teste de prévia</h1></body></html>'};
+ const saved=await ok('prospecto_save_draft',draft);assert.equal(saved.published,false);assert.equal(saved.lead.productionStatus,'review');
+ const stale=await call('prospecto_save_draft',draft);assert.equal(stale.isError,true);
+ let beforeReview=JSON.parse((await db.prepare('SELECT data FROM studio_records WHERE key=?').bind('lead:'+id).first()).data);
+ await request('/api/records',{method:'POST',body:{kind:'lead',id,base:beforeReview,changes:{research:{...beforeReview.research,aiStatus:'qualified',reviewNote:'Decisão humana antes de nova versão.'}}}});
+ const reviewed=(await ok('prospecto_get_lead',{lead_id:id})).lead;
+ const revised=await ok('prospecto_save_draft',{...draft,expected_revision:reviewed.revision});assert.equal(revised.lead.research.aiStatus,'qualified');assert.equal(revised.lead.research.reviewNote,'Decisão humana antes de nova versão.');
+ const b64='iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1kAAAAASUVORK5CYII=';
+ const mediaArgs={lead_id:id,name:'logo.png',role:'logo',alt:'Marca de teste',usage:'generated',data_base64:b64};
+ const media=await ok('prospecto_attach_media',mediaArgs);assert.equal(media.reused,false);
+ const repeated=await ok('prospecto_attach_media',mediaArgs);assert.equal(repeated.reused,true);assert.equal(repeated.asset.id,media.asset.id);
+ assert.equal((await request('/api/files/'+media.asset.id,{as:'anonymous'})).status,401);
+ const local=await call('prospecto_attach_media',{lead_id:id,name:'local.png',role:'hero',alt:'Teste',usage:'reference',source_url:'https://example.com',image_url:'https://127.0.0.1/secret'});assert.equal(local.isError,true);
+ const disguised=await call('prospecto_attach_media',{...mediaArgs,data_base64:Buffer.from('<script>bad()</script>').toString('base64')});assert.equal(disguised.isError,true);
+ console.log('PASS: rascunhos com revisão, mídia privada idempotente, validação de arquivo e proteção contra URLs internas.');
+ raw=JSON.parse((await db.prepare('SELECT data FROM studio_records WHERE key=?').bind('lead:'+id).first()).data);
+ await request('/api/records',{method:'POST',body:{kind:'lead',id,base:raw,changes:{stage:'fechado',value:900,received:450,productionStatus:'approved',research:{...raw.research,aiStatus:'qualified',reviewNote:'Decisão da equipe.'}}}});
+ await ok('prospecto_upsert_researched_lead',input);
+ raw=JSON.parse((await db.prepare('SELECT data FROM studio_records WHERE key=?').bind('lead:'+id).first()).data);assert.equal(raw.stage,'fechado');assert.equal(raw.value,900);assert.equal(raw.received,450);assert.equal(raw.research.aiStatus,'qualified');assert.equal(raw.research.reviewNote,'Decisão da equipe.');
+ info=(await ok('prospecto_get_lead',{lead_id:id})).lead;
+ const approved=await call('prospecto_save_draft',{...draft,expected_revision:info.revision});assert.equal(approved.isError,true);
+ const activeBeforeBuilder=raw.customHtml;
+ const builder=await ok('prospecto_save_builder_brief',{lead_id:id,expected_revision:info.revision,project_type:'catalog',lovable_prompt:'Prompt reservado do Lovable',project_url:'https://lovable.dev/projects/qa-catalog',preview_url:'https://qa-catalog.lovable.app'});
+ assert.equal(builder.saved,true);assert.equal(builder.published,false);
+ const withBuilder=(await ok('prospecto_get_lead',{lead_id:id})).lead;assert.equal(withBuilder.builder.projectUrl,'https://lovable.dev/projects/qa-catalog');assert.equal(withBuilder.builder.prompt,'Prompt reservado do Lovable');assert.equal(withBuilder.builder.previewReviewed,false);
+ assert.equal((await call('prospecto_save_builder_brief',{lead_id:id,expected_revision:info.revision,lovable_prompt:'Stale'})).isError,true);
+ const afterBuilder=JSON.parse((await db.prepare('SELECT data FROM studio_records WHERE key=?').bind('lead:'+id).first()).data);assert.equal(afterBuilder.customHtml,activeBeforeBuilder);assert.equal(afterBuilder.value,900);assert.equal(afterBuilder.stage,'fechado');assert.equal(afterBuilder.productionStatus,'approved');
+ console.log('PASS: conexão Lovable guarda prompt e links com revisão, preservando página aprovada, código, valores e negociação.');
+ const ws=await ok('prospecto_workspace');assert.equal(ws.canSendMessages,false);assert.equal(ws.canPublishPages,false);assert.equal(ws.apiBillingConnected,false);
+ await request('/api/team',{method:'POST',body:{action:'add',email:'qa.member@prospecto.test'}});
+ assert.equal((await rpc('tools/call',{name:'prospecto_workspace',arguments:{}},'member')).status,200);
+ await request('/api/team',{method:'POST',body:{action:'remove',email:'qa.member@prospecto.test'}});
+ assert.equal((await rpc('tools/call',{name:'prospecto_workspace',arguments:{}},'member')).status,403);
+ console.log('PASS: preservação de valores, etapas, decisões humanas e páginas aprovadas; revogação de acesso também vale para MCP.');
+ if(process.env.PROSPECTO_QA_BOOTSTRAP_PATH)await writeFile(process.env.PROSPECTO_QA_BOOTSTRAP_PATH,JSON.stringify(boot));
+ console.log('MCP e lote piloto aprovados com D1/R2 temporários.');
+}finally{await mf.dispose();}

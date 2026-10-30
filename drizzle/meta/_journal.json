@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1793200944155,
+      "tag": "0000_many_leech",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1793200972904,
+      "tag": "0001_regular_mongoose",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1793220667473,
+      "tag": "0002_mixed_zuras",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1793243917607,
+      "tag": "0003_ambiguous_firedrake",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1793328339385,
+      "tag": "0004_rich_titania",
+      "breakpoints": true
+    }
+  ]
+}
