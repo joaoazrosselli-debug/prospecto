@@ -11,7 +11,9 @@ Projeto pessoal de Engenharia de Software para organizar oportunidades comerciai
 - Briefing, catálogo, preços, prompts editáveis e preparação de propostas.
 - Funil comercial, registros manuais de custos e recebimentos e lixeira recuperável.
 - API com controle de acesso, banco D1, arquivos R2 e integração MCP.
-- Consulta de empresas via OpenStreetMap e preparação de prompts para o Lovable.
+- Mapa interativo em Canvas 2D, localização nacional e busca de empresas por segmento/raio via OpenStreetMap.
+- Importação sem redigitar contatos, com revisão de fontes e deduplicação.
+- Preparação de prompts para o Lovable.
 
 ## Para recrutadores
 
@@ -41,7 +43,7 @@ pnpm typecheck
 pnpm build
 ```
 
-Depois do build, `pnpm test:integration` executa a suíte de APIs e MCP com D1/R2 temporários. Esses testes não utilizam o banco de produção. Consulte [Operação e testes](docs/OPERACAO.md) para os cenários adicionais.
+Depois do build, `pnpm test:integration` executa a suíte de APIs e MCP com D1/R2 temporários. Esses testes não utilizam o banco de produção. Consulte [Operação e testes](docs/OPERACAO.md) para os cenários adicionais e [Mapa e descoberta](docs/MAPA-E-DESCOBERTA.md) para o novo fluxo, fontes e cotas.
 
 ## Tecnologias
 

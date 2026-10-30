@@ -4,6 +4,7 @@ Este é um projeto em desenvolvimento, não uma certificação de prontidão par
 
 - A produção depende de autenticação e serviços do Sites. A cópia pública não é um serviço já hospedado nem substitui a integração de identidade ao migrar para outro provedor.
 - A consulta externa precisa ser solicitada. OpenStreetMap pode não ter telefone ou site. Ausência de site na fonte significa informação não confirmada.
+- Photon e Overpass públicos têm cotas no aplicativo e não oferecem garantia de disponibilidade. O mapa usa OpenFreeMap; volumes maiores exigem avaliar infraestrutura própria ou contratada. A pesquisa entrega uma amostra da área, sem garantir todos os estabelecimentos.
 - Google Places depende de chave e faturamento próprios; esta cópia não inclui credenciais. O Lovable recebe um prompt e links; não há importação automática do projeto gerado.
 - Não existe provedor de WhatsApp, disparo automático, agente comercial permanente, gateway de pagamentos ou confirmação de entrega de mensagens.
 - O backup geral não é um backup completo de banco, mídias, revisões e histórico do editor. Antes de operar com clientes, defina e teste recuperação de todos esses itens.

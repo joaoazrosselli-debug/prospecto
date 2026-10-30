@@ -3,6 +3,7 @@ declare namespace Cloudflare {
     PROSPECTO_OWNER_EMAIL?: string;
     PROSPECTO_PILOT_BATCH?: string;
     GOOGLE_PLACES_API_KEY?: string;
+    PROSPECTO_GEOCODER_URL?: string;
     DB?: D1Database;
     BUCKET?: R2Bucket;
   }

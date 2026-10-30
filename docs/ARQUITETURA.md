@@ -8,6 +8,7 @@
 | Rotas | `app/api/[...path]/route.ts`, `app/mcp/route.ts`, `app/p/[...path]/route.ts` | Entrada de APIs, ferramentas e apresentações |
 | Autorização | `lib/studio-auth.ts`, `app/chatgpt-auth.ts` | Identidade e autorização por equipe |
 | Dados | `db/`, `drizzle/`, `lib/studio-records.ts` | Esquema e acesso a registros |
+| Mapa e localização | `public/discovery-map.js`, `maps/engine.js`, `scripts/build-maps.mjs` | OpenLayers Canvas 2D, mapa OpenFreeMap e consulta Photon manual |
 | Pesquisa e IA | `lib/studio-discovery.ts`, `lib/prospecto-agent.ts` | Fontes externas e ferramentas MCP |
 | Revisão | `lib/delivery-audit.ts`, `lib/studio-production.ts` | Conferência estrutural e registro de revisão |
 | Testes | `tests/` | Casos de regras, concorrência, acesso e isolamento |

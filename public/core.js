@@ -1,4 +1,5 @@
 import {normalizeResearch} from './research-data.js';
+import {validMapPoint} from './discovery-data.js';
 import {normalizeOutreach,outreachMessage} from './outreach.js';
 export const STAGES=[['novo','Nova oportunidade'],['contato','Em conversa'],['proposta','Proposta enviada'],['fechado','Fechado'],['perdido','Sem interesse']];
 export const money=value=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(Number(value)||0);
@@ -27,6 +28,7 @@ export function normalizeLead(data,isDemo=false){
  lead.lovablePrompt=String(data.lovablePrompt||'').slice(0,50000);
  lead.lovableProjectUrl=safeURL(data.lovableProjectUrl);lead.externalPreviewUrl=safeURL(data.externalPreviewUrl);lead.externalPreviewReviewed=data.externalPreviewReviewed===true;
  lead.discovery=data.discovery?.provider==='osm'&&/^(node|way|relation)\/\d+$/.test(data.discovery.externalId||'')?{provider:'osm',externalId:data.discovery.externalId,sourceUrl:'https://www.openstreetmap.org/'+data.discovery.externalId,checkedAt:plain(data.discovery.checkedAt).slice(0,40),license:'ODbL-1.0'}:null;
+ if(lead.discovery&&validMapPoint(data.discovery.lat,data.discovery.lon))Object.assign(lead.discovery,{lat:data.discovery.lat,lon:data.discovery.lon});
  if(!lead.discovery){const osm=lead.source.match(/^https:\/\/www\.openstreetmap\.org\/((?:node|way|relation)\/\d+)$/);if(osm)lead.discovery={provider:'osm',externalId:osm[1],sourceUrl:lead.source,checkedAt:'',license:'ODbL-1.0'};}
  lead.layout=['editorial','boutique','technical'].includes(data.layout)?data.layout:'editorial';
  lead.palette=/^#[0-9a-f]{6}$/i.test(data.palette||'')?data.palette:'#b6e676';

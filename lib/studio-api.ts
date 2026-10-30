@@ -5,7 +5,7 @@ import {getCode,saveCode,applyCode,listCodeHistory,getCodeVersion} from './studi
 import {getProduction,saveDeliveryReview} from './studio-production';
 import {createTestBusiness} from './test-business';
 import {getOutreach} from './studio-outreach';
-import {discoveryStatus,searchBusinesses,enrichBusiness,importDiscoveredBusiness,googleBusinessRating} from './studio-discovery';
+import {discoveryStatus,locateDiscoveryArea,searchBusinesses,enrichBusiness,importDiscoveredBusiness,googleBusinessRating} from './studio-discovery';
 import {applyPreparedPilot,pilotStatus,PILOT_ID} from './pilot';
 import {cleanRecord,changedConflicts,DEFAULT_SETTINGS,validId,sniffMedia} from './studio-validation.js';
 type Row={key:string;kind:string;data:string;revision:number;updated_at:string;updated_by:string};
@@ -39,6 +39,7 @@ export async function handleStudio(request:Request){
    if(path[1]==='status'&&path.length===2&&request.method==='GET')return json(discoveryStatus());
    if(path.length===2&&request.method==='POST'){
     const body=await readJSON(request);
+    if(path[1]==='locate')return json(await locateDiscoveryArea(access,body));
     if(path[1]==='search')return json(await searchBusinesses(access,body));
     if(path[1]==='enrich')return json(await enrichBusiness(access,body));
     if(path[1]==='import')return json(await importDiscoveredBusiness(access,body));

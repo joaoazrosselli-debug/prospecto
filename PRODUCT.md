@@ -2,6 +2,10 @@
 
 Estúdio privado para uma equipe organizar empresas locais, pesquisas, materiais, propostas e páginas. A equipe começou por Bairro Alto e Bacacheri em Curitiba e Colombo, mas o cadastro atende segmentos e regiões diferentes.
 
+A busca externa atende pontos em todo o Brasil, com mapa, segmento e raio ajustáveis. A equipe escolhe a região, revisa os dados encontrados e importa a empresa para o catálogo sem redigitar. Dados ausentes permanecem pendentes; não inferir inexistência de site, WhatsApp ou autorização de uso de fotos. O mapa pode ter cobertura inferior ao Google.
+
+O Prospecto reúne funções de CRM: catálogo de contatos, histórico comercial, qualificação e funil de negócios.
+
 O operador precisa encontrar uma oportunidade, entender os dados disponíveis, preparar uma página específica, conferir a entrega e conversar com o responsável. A navegação e a edição devem funcionar no celular. O foco desta evolução é a qualidade da página e a clareza da revisão, sem substituir cadastros e páginas existentes.
 
 As páginas podem ser produzidas por assistente conectado via MCP. O chat é uma execução por comando, não um serviço permanente. A plataforma não possui chave de modelo nem cobrança de API configurada e não envia mensagens. A pesquisa precisa registrar fontes e distinguir hipótese comercial de necessidade confirmada.

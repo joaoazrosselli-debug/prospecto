@@ -14,7 +14,7 @@ const research={websiteAssessment:'not_found',confidence:'medium',priority:'high
 try{
  const db=await mf.getD1Database('DB');for(const file of (await readdir('drizzle')).filter(f=>f.endsWith('.sql')).sort())for(const sql of (await readFile('drizzle/'+file,'utf8')).split('--> statement-breakpoint').map(s=>s.trim()).filter(Boolean))await db.prepare(sql).run();
  let r=await rpc('server/discover',{},'anonymous');assert.equal(r.status,200);assert.deepEqual(r.data.result.supportedVersions,['2026-07-28']);
- r=await rpc('tools/list',{},'anonymous');assert.equal(r.status,200);assert.equal(r.data.result.tools.length,14);assert.ok(r.data.result.tools.every(t=>t.inputSchema.additionalProperties===false));
+ r=await rpc('tools/list',{},'anonymous');assert.equal(r.status,200);assert.ok(r.data.result.tools.some(t=>t.name==='prospecto_locate_region'));assert.ok(r.data.result.tools.some(t=>t.name==='prospecto_search_businesses'&&t.inputSchema.properties.region.enum.includes('map')));assert.ok(r.data.result.tools.every(t=>t.inputSchema.additionalProperties===false));
  assert.equal((await rpc('tools/call',{name:'prospecto_workspace',arguments:{}},'anonymous')).status,401);
  assert.equal((await rpc('tools/call',{name:'prospecto_workspace',arguments:{}},'stranger')).status,403);
  const badOrigin=await request('/mcp',{method:'POST',headers:{Origin:'https://outside.example'},body:{jsonrpc:'2.0',id:1,method:'tools/list'}});assert.equal(badOrigin.status,403);

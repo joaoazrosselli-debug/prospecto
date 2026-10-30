@@ -1,4 +1,7 @@
 import { sqliteTable, text, integer, index } from "drizzle-orm/sqlite-core";
+export const discoveryLocations=sqliteTable('studio_discovery_locations',{
+ query:text('query').primaryKey(),data:text('data').notNull(),expiresAt:text('expires_at').notNull(),
+},table=>[index('discovery_locations_expiry').on(table.expiresAt)]);
 export const discoveryBatches=sqliteTable('studio_discovery_batches',{
  id:text('id').primaryKey(),query:text('query').notNull(),results:text('results').notNull(),createdAt:text('created_at').notNull(),expiresAt:text('expires_at').notNull(),
 },table=>[index('discovery_query_created').on(table.query,table.createdAt),index('discovery_expiry').on(table.expiresAt)]);
